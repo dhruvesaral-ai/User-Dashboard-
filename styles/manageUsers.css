@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+main{
+    padding: 10px;
+}
+
+#header-1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#right-header-1-div{
+    height: 35px;
+    display: flex;
+    gap: 10px;
+}
+
+#search-users-input{
+    padding: 0 10px;
+    font-size: 18px;
+    height: 100%;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+#add-user-btn{
+    height: 100%;
+    padding: 0 10px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+#add-user-btn img{
+    width: 20px;
+}
