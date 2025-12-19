@@ -4,23 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/manageUsers.css">
 </head>
 <body>
+    <div id="modal">
+        <div id="close-btn-container">
+            <img id="modal-close-btn" src="./assets/close.png" alt="" onclick="closeModal()">
+        </div>
+        <form>
+            <label for="">Name: </label>
+            <input type="text" placeholder="Enter your name...">
+            <label for="">Email: </label>
+            <input type="email" placeholder="Enter your email...">
+            <label for="">Password: </label>
+            <input type="password" placeholder="Enter your password...">
+            <label for="">Select Role: </label>
+            <select>
+                <option value="">User</option>
+                <option value="">Admin</option>
+            </select>
+            <button id="save-btn">Save</button>
+        </form>
+    </div>
     <main>
         <section id="header-1">
             <h2>All Users</h2>
             <div id="right-header-1-div">
                 <input type="text" id="search-users-input" placeholder="Search">
-                <button id="add-user-btn">
+                <button onclick="openModal()" id="add-user-btn">
                     <img src="./assets/add.png">
                     <span>Add user</span>
                 </button>
             </div>
         </section>
-        <section>
-
+        <section id="list-users">
+            
         </section>
     </main>
+
+    <script src="./scripts/manageUsers.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    font-family: "Google Sans", sans-serif;
 }
 
 html,body{
@@ -52,4 +53,72 @@ main{
 
 #add-user-btn img{
     width: 20px;
+}
+
+#modal{
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    display: none;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#close-btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+#modal-close-btn{
+    width: 20px;
+    cursor: pointer;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input{
+    padding: 8px 10px;
+    font-size: 14px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+}
+
+label{
+    margin-top: 10px;
+}
+
+select{
+    border: none;
+    outline: none;
+    padding: 6px 0;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+#save-btn{
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    gap: 5px;
+    cursor: pointer;
+}
+
+
+#list-users{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    min-height: 80vh;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
 }
