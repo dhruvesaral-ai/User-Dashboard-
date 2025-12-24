@@ -122,3 +122,48 @@ select{
     margin-top: 20px;
     border-radius: 10px;
 }
+
+#list-user-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#list-user-header p{
+    flex: 1;
+    border: 1px;
+}
+
+#user{
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding: 20px;
+}
+
+#role{
+    background-color: rgb(177, 232, 177);
+    color: darkgreen;
+    border: 1px solid;
+    padding: 5px 8px;
+    border-radius: 20px;
+    text-align: center;
+    width: 80px;
+}
+
+#action-img{
+    width: 20px;
+}
+
+.child{
+    flex: 1;
+}
+
+#delete-btn{
+    padding: 10px;
+    background-color: rgb(255, 16, 16);
+    color: white;
+    border-radius: 10px;
+    gap: 5px;
+    cursor: pointer;
+}
