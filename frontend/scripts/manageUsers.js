@@ -14,6 +14,10 @@ function closeModal(){
     modal.style.display = 'none'
 }
 
+function navigate(id){
+    window.location.href = `http://localhost:5500/frontend/editUser.html?userId=${id}`
+}
+
 form.addEventListener('submit', async function(e){
     e.preventDefault()
     const name = nameInput.value
@@ -83,6 +87,7 @@ function generateHtml(arrayOfUsers){
                         <p id="password" >${user.password}</p>
                     </div>
                     <div class="child">
+                        <button id="edit-btn" onclick="navigate('${user._id}')">Edit</button>
                         <button id="delete-btn" onclick="deleteUser('${user._id}')">Delete</button>
                     </div>
                 </div>

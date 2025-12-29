@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 const User = require('./models/UserModel');
 const app = express();
 const PORT = 8000;
@@ -22,10 +23,11 @@ app.post('/create-user', async function(req, res){
         if(!name || !email || !password || !role){
             return res.json({err: 'All fields are required', status: 'false'})
         }
+        const hashedPassword = await bcrypt.hash(password, 10)
         const nayaUser = new User({
             name: name,
             email: email,
-            password: password,
+            password: hashedPassword,
             role: role
         })
         await nayaUser.save()
@@ -39,6 +41,37 @@ app.get('/users' , async function(req, res){
     try {
         const allUsers = await User.find();
         res.json({message: 'All users fetched successfuly', users: allUsers, status: 'true'})
+    } catch (error) {
+        res.json({err: error.message, status: 'false'})
+    }
+})
+
+app.get('/user/:id' , async function(req, res){
+    try {
+        const {id} = req.params;
+        const user = await User.findById(id);
+        if(!user) {
+            return res.json({err: 'No user found', status: 'false'})
+        }
+        res.json({message: 'All users fetched successfuly', user, status: 'true'})
+    } catch (error) {
+        res.json({err: error.message, status: 'false'})
+    }
+})
+
+app.put('/update/:id', async function(req, res){
+    try {
+        const {id} = req.params;
+        const {name, email, password} = req.body;
+        const updatedUser = await User.findByIdAndUpdate(id, {
+            name: name,
+            email: email,
+            password: password
+        }, {new: true});
+        if(!updatedUser){
+            res.json({err: 'Cannot able to edit user', status: 'false'})
+        }
+        res.json({message: 'User updated successfuly', status: 'true'})
     } catch (error) {
         res.json({err: error.message, status: 'false'})
     }
