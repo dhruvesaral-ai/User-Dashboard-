@@ -20,7 +20,7 @@ function closeModal(){
 }
 
 function navigate(id){
-    window.location.href = `https://userdashboardbytecodeproject.vercel.app/frontend/editUser.html?userId=${id}`
+    window.location.href = `https://userdashboardbytecodeproject.vercel.app/editUser.html?userId=${id}`
 }
 
 form.addEventListener('submit', async function(e){
@@ -100,7 +100,7 @@ function generateHtml(arrayOfUsers){
 
 const logout = () => {
     localStorage.removeItem('token')
-    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/frontend/index.html'
+    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/index.html'
 }
 
 getAllUsers()
