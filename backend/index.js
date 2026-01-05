@@ -104,6 +104,10 @@ app.post('/signup', async function(req, res){
         if(!name || !email || !password){
             return res.json({err: 'All fields are required', status: 'false'})
         }
+        const user = await User.findOne({email})
+        if(user){
+            return res.json({err: 'User already exist', status: 'false'})
+        }
         const hashedPassword = await bcrypt.hash(password, 10)
         const nayaUser = new User({
             name: name,
