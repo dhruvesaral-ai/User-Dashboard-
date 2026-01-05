@@ -1,6 +1,6 @@
 const token = localStorage.getItem('token')
 if(token){
-    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/frontend/manageUsers.html'
+    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/manageUsers.html'
 }
 const nameInput = document.getElementById('name-input');
 const emailInput = document.getElementById('email-input');
@@ -29,7 +29,7 @@ form.addEventListener('submit', async function(e){
     }
     alert(data.message)
     localStorage.setItem('token', data.token)
-    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/frontend/manageUsers.html'
+    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/manageUsers.html'
     nameInput.value = ""
     emailInput.value = ""
     passwordInput.value = ""

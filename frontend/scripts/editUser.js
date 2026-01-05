@@ -40,7 +40,7 @@ form.addEventListener('submit', async function(e){
         return alert(`❌ ${data.err} ❌`)
     }
     alert(data.message)
-    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/frontend/manageUsers.html'
+    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/manageUsers.html'
 })
 
 

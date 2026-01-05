@@ -1,6 +1,6 @@
 const token = localStorage.getItem('token')
 if(!token){
-    window.location.href = 'http://127.0.0.1:5500/frontend/index.html'
+    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/index.html'
 }
 
 const modal = document.getElementById('modal');
