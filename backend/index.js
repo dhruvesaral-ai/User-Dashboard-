@@ -14,7 +14,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://dhruvesaral_db_user:<db_password>@cluster0.isgivcy.mongodb.net/?appName=Cluster0/UserDashboard')
+mongoose.connect('mongodb+srv://dhruv:bytecodeproject@cluster0.fbayxdy.mongodb.net/?appName=Cluster0/UserDashboard')
     .then(() => console.log('Database Connected'))
     .catch((error) => console.log(error.message));
 
