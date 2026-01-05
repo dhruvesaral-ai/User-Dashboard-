@@ -10,7 +10,7 @@ const value = params.get("userId");
 
 
 async function getUserById(id){
-    const response = await fetch(`http://localhost:8000/user/${id}`);
+    const response = await fetch(`https://userdashboardbytecodeprojectbackend.vercel.app/user/${id}`);
     const data = await response.json();
     if(data.status === 'false'){
         return alert(`❌ ${data.err} ❌`)
@@ -28,7 +28,7 @@ form.addEventListener('submit', async function(e){
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    const response = await fetch(`http://localhost:8000/update/${value}`, {
+    const response = await fetch(`https://userdashboardbytecodeprojectbackend.vercel.app/update/${value}`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'
@@ -40,7 +40,7 @@ form.addEventListener('submit', async function(e){
         return alert(`❌ ${data.err} ❌`)
     }
     alert(data.message)
-    window.location.href = 'http://127.0.0.1:5500/frontend/manageUsers.html'
+    window.location.href = 'https://userdashboardbytecodeproject.vercel.app/frontend/manageUsers.html'
 })
 
 
