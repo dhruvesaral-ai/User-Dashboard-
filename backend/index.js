@@ -8,13 +8,13 @@ const app = express();
 const PORT = 8000;
 
 app.use(cors({
-    origin: 'http://127.0.0.1:5500',
+    origin: 'https://userdashboardbytecodeproject.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     credentials: true
 }));
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/UserDashboard')
+mongoose.connect('mongodb+srv://dhruvesaral_db_user:<db_password>@cluster0.isgivcy.mongodb.net/?appName=Cluster0/UserDashboard')
     .then(() => console.log('Database Connected'))
     .catch((error) => console.log(error.message));
 
