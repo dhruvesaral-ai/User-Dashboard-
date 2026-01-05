@@ -3,15 +3,22 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const User = require('./models/UserModel');
+const jwt = require('jsonwebtoken')
 const app = express();
 const PORT = 8000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://127.0.0.1:5500',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true
+}));
 app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/UserDashboard')
     .then(() => console.log('Database Connected'))
     .catch((error) => console.log(error.message));
+
+const JWT_SECRET_KEY = 'absfkj327687g%^#$%^&*YHUVGHVBN'
 
 app.get('/', function(req, res){
     res.send("Server is running")
@@ -86,6 +93,47 @@ app.delete('/delete/:id', async function(req, res) {
             res.json({err: error.message, status: 'false'})
         }
         res.json({message: 'User deleted successfuly', status: 'true'})
+    } catch (error) {
+        res.json({err: error.message, status: 'false'})
+    }
+})
+
+app.post('/signup', async function(req, res){
+    try {
+        const {name, email, password} = req.body;
+        if(!name || !email || !password){
+            return res.json({err: 'All fields are required', status: 'false'})
+        }
+        const hashedPassword = await bcrypt.hash(password, 10)
+        const nayaUser = new User({
+            name: name,
+            email: email,
+            password: hashedPassword
+        })
+        await nayaUser.save()
+        const token = jwt.sign({id: nayaUser._id}, JWT_SECRET_KEY, {expiresIn: '7d'})
+        res.json({message: 'Signup successfully', status: 'true', token})
+    } catch (error) {
+        res.json({err: error.message, status: 'false'})
+    }
+})
+
+app.post('/login', async function(req, res){
+    try {
+        const {email, password} = req.body;
+        if(!email || !password){
+            return res.json({err: 'All fields are required', status: 'false'})
+        }
+        const user = await User.findOne({email});
+        if(!user){
+            return res.json({err: 'No user found', status: 'false'})
+        }
+        const isPasswordCorrect = await bcrypt.compare(password, user.password)
+        if(!isPasswordCorrect){
+            return res.json({err: 'Invalid password', status: 'false'})
+        }
+        const token = jwt.sign({id: user._id}, JWT_SECRET_KEY, {expiresIn: '7d'})
+        res.json({message: 'Login successfully', status: 'true', token})
     } catch (error) {
         res.json({err: error.message, status: 'false'})
     }

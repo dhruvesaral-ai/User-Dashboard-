@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>    
+    <title>Login</title>
     <link rel="stylesheet" href="./styles/index.css">
 </head>
 <body>
-    <main>
-        <a href="./manageUsers.html">Manage Users</a>
-        <a href="./editUser.html">See All Users</a>
-    </main>
+    <div class="container">
+        <h1>Login</h1>
+        <form>
+            <div class="form-group">
+                <label for="email-input">Email</label>
+                <input type="email" id="email-input" placeholder="Enter your email...">
+            </div>
+            <div class="form-group">
+                <label for="password-input">Password</label>
+                <input type="password" id="password-input" placeholder="Enter your password...">
+            </div>
+            <p>Don't have an account? <a href="http://127.0.0.1:5500/frontend/Signup.html">Signup</a></p>
+            <button id="save-btn" type="submit">Login</button>
+        </form>
+    </div>
+
+    <script src="./scripts/login.js"></script>
 </body>
 </html>

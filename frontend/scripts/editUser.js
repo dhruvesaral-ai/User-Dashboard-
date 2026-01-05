@@ -1,7 +1,12 @@
 const h1 = document.querySelector('h1')
+const nameInput = document.getElementById('name-input');
+const emailInput = document.getElementById('email-input');
+const passwordInput = document.getElementById('password-input');
+const roleInput = document.getElementById('role-input');
+const form = document.querySelector('form');
+
 const params = new URLSearchParams(window.location.search);
 const value = params.get("userId");
-h1.innerText = `Edit User ( ${value} )`
 
 
 async function getUserById(id){
@@ -10,8 +15,34 @@ async function getUserById(id){
     if(data.status === 'false'){
         return alert(`❌ ${data.err} ❌`)
     }
-    console.log(data.user)
+    h1.innerText = `Edit User ( ${data.user.name} )`
+    nameInput.value = data.user.name
+    emailInput.value = data.user.email
+    passwordInput.value = data.user.password
+    roleInput.value = data.user.role
 }
+
+form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const name = nameInput.value;
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    const response = await fetch(`http://localhost:8000/update/${value}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({name , email, password})
+    })
+    const data = await response.json();
+    if(data.status === 'false'){
+        return alert(`❌ ${data.err} ❌`)
+    }
+    alert(data.message)
+    window.location.href = 'http://127.0.0.1:5500/frontend/manageUsers.html'
+})
+
 
 getUserById(value)
 

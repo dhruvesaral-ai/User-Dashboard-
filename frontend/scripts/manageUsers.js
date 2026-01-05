@@ -1,10 +1,15 @@
+const token = localStorage.getItem('token')
+if(!token){
+    window.location.href = 'http://127.0.0.1:5500/frontend/index.html'
+}
+
 const modal = document.getElementById('modal');
 const nameInput = document.getElementById('name-input');
 const emailInput = document.getElementById('email-input');
 const passwordInput = document.getElementById('password-input');
 const roleInput = document.getElementById('role-input');
 const form = document.querySelector('form');
-const container = document.getElementById('user-container')
+const container = document.getElementById('user-table-body')
 
 function openModal(){
     modal.style.display = 'block'
@@ -56,6 +61,8 @@ async function getAllUsers(){
 }
 
 async function deleteUser(id){
+    if(!confirm('Are you sure you want to delete this user?')) return;
+    
     const response = await fetch(`http://localhost:8000/delete/${id}`, {
         method: 'DELETE',
         headers: {
@@ -66,7 +73,7 @@ async function deleteUser(id){
     if(data.status === 'false'){
         return alert(`❌ ${data.err} ❌`)
     }
-    alert(data.message)
+    // alert(data.message) // Optional: remove alert for smoother UX or keep it
     getAllUsers()
 }
 
@@ -75,24 +82,25 @@ function generateHtml(arrayOfUsers){
     container.innerHTML = '';
     arrayOfUsers.forEach(user => {
         container.innerHTML += `
-                <div id="user">
-                    <div class="child">
-                        <p id="name">${user.name}</p>
-                        <p id="email">${user.email}</p>
+            <tr>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td><span class="role-badge role-${user.role}">${user.role}</span></td>
+                <td>${user.password}</td>
+                <td>
+                    <div class="action-btn-group">
+                        <button class="edit-btn" onclick="navigate('${user._id}')">Edit</button>
+                        <button class="delete-btn" onclick="deleteUser('${user._id}')">Delete</button>
                     </div>
-                    <div class="child">
-                        <p id="role" >${user.role}</p>
-                    </div>
-                    <div class="child">
-                        <p id="password" >${user.password}</p>
-                    </div>
-                    <div class="child">
-                        <button id="edit-btn" onclick="navigate('${user._id}')">Edit</button>
-                        <button id="delete-btn" onclick="deleteUser('${user._id}')">Delete</button>
-                    </div>
-                </div>
+                </td>
+            </tr>
         `
     });
+}
+
+const logout = () => {
+    localStorage.removeItem('token')
+    window.location.href = 'http://127.0.0.1:5500/frontend/index.html'
 }
 
 getAllUsers()
